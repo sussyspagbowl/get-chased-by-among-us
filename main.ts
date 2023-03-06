@@ -45,6 +45,10 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, l
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     otherSprite.destroy()
     statusbar.max += 100
+    for (let index = 0; index < 50; index++) {
+        pause(100)
+        statusbar.value += 2
+    }
 })
 statusbars.onZero(StatusBarKind.Energy, function (status) {
     Render.moveWithController(5)
