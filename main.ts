@@ -3,25 +3,25 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile6`, function (sprite, l
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (statusbar.value == 100) {
-        Render.moveWithController(10)
+        Render.moveWithController(8)
         for (let index = 0; index < 25; index++) {
             pause(100)
             statusbar.value += -4
         }
     } else if (statusbar.max == 200) {
-        Render.moveWithController(10)
+        Render.moveWithController(8)
         for (let index = 0; index < 50; index++) {
             pause(100)
             statusbar.value += -4
         }
     } else if (statusbar.max == 300) {
-        Render.moveWithController(10)
+        Render.moveWithController(8)
         for (let index = 0; index < 75; index++) {
             pause(100)
             statusbar.value += -4
         }
     } else if (statusbar.max == 400) {
-        Render.moveWithController(10)
+        Render.moveWithController(8)
         for (let index = 0; index < 100; index++) {
             pause(100)
             statusbar.value += -4
@@ -44,14 +44,10 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, l
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     otherSprite.destroy()
-    statusbar.max += 100
-    for (let index = 0; index < 50; index++) {
-        pause(100)
-        statusbar.value += 2
-    }
+    info.changeScoreBy(1)
 })
 statusbars.onZero(StatusBarKind.Energy, function (status) {
-    Render.moveWithController(5)
+    Render.moveWithController(4)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     music.stopAllSounds()
@@ -64,6 +60,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     }
 })
 let statusbar: StatusBarSprite = null
+info.setScore(0)
 game.showLongText("Adolf Hitler has trapped you in a maze", DialogLayout.Bottom)
 game.showLongText("find the brown doors to escape", DialogLayout.Bottom)
 game.showLongText("there are secret passage ways to get around quickly.", DialogLayout.Bottom)
@@ -73,7 +70,7 @@ game.showLongText("use W to move forwards and S to move backwards", DialogLayout
 game.showLongText("hold space bar to go into birds eye view", DialogLayout.Bottom)
 game.showLongText("release it to get out of birds eye view", DialogLayout.Bottom)
 game.showLongText("use E to sprint, you have a limited sprint bar", DialogLayout.Bottom)
-game.showLongText("collect natzi simbols to increase your sprint time", DialogLayout.Bottom)
+game.showLongText("collect natzi simbols for points", DialogLayout.Bottom)
 game.showLongText("now escape before Hitler catches you!", DialogLayout.Bottom)
 let f = sprites.create(assets.image`bean`, SpriteKind.Food)
 let h = sprites.create(assets.image`bean`, SpriteKind.Food)
@@ -241,11 +238,11 @@ tiles.placeOnRandomTile(mySprite6, assets.tile`transparency16`)
 tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
 tiles.placeOnRandomTile(mySprite5, assets.tile`transparency16`)
 tiles.placeOnRandomTile(mySprite4, assets.tile`transparency16`)
-mySprite2.follow(mySprite, 60)
-mySprite3.follow(mySprite, 60)
-mySprite4.follow(mySprite, 60)
-mySprite5.follow(mySprite, 60)
-mySprite6.follow(mySprite, 60)
+mySprite2.follow(mySprite, 70)
+mySprite3.follow(mySprite, 70)
+mySprite4.follow(mySprite, 70)
+mySprite5.follow(mySprite, 70)
+mySprite6.follow(mySprite, 70)
 if (mySprite2 || (mySprite3 || (mySprite4 || (mySprite5 || mySprite6)))) {
     tiles.placeOnRandomTile(mySprite2, assets.tile`transparency16`)
     tiles.placeOnRandomTile(mySprite3, assets.tile`transparency16`)
@@ -288,4 +285,6 @@ forever(function () {
 })
 game.onUpdateInterval(10000, function () {
     tiles.placeOnRandomTile(f, assets.tile`transparency16`)
+    tiles.placeOnRandomTile(g, assets.tile`transparency16`)
+    tiles.placeOnRandomTile(h, assets.tile`transparency16`)
 })
